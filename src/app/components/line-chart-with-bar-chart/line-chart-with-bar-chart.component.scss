@@ -1,0 +1,30 @@
+.chartMenu {
+  width: 100%;
+  color: rgba(54, 162, 235, 1);
+
+  .chartBox {
+    width: 100%;
+    background-color: rgba(245, 245, 245, 0.8);
+    display: flex;
+    padding: 15x;
+
+    .colSmall {
+      width: 35px; // fixed width for small side
+      min-width: 35px;
+    }
+
+    .colLarge {
+      flex: 1; // take remaining space
+      overflow-x: auto; // <-- make scrollable if chart overflows
+      .box {
+        height: 500px;
+
+        canvas {
+          display: block;
+          width: max-content !important; // <-- allows canvas to grow horizontally
+          height: 100% !important;
+        }
+      }
+    }
+  }
+}
