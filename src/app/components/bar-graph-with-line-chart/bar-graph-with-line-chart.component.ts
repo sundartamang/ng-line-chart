@@ -23,6 +23,7 @@ export class BarGraphWithLineChartComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.initializeChartJs();
+    this.updateBarDataWithYAxisMax();
   }
 
   private initializeChartJs(): void {
@@ -56,8 +57,8 @@ export class BarGraphWithLineChartComponent implements AfterViewInit {
             type: 'bar',
             label: 'Votes',
             data: this.barChartData,
-            backgroundColor: 'rgba(180, 180, 180, 0.09)',
-            hoverBackgroundColor: 'rgba(180, 180, 180, 0.09)',
+            backgroundColor: 'rgba(180, 180, 180, 0.099)',
+            hoverBackgroundColor: 'rgba(180, 180, 180, 0.099)',
             borderWidth: 0,
             yAxisID: 'y',
             order: 2,
@@ -100,7 +101,7 @@ export class BarGraphWithLineChartComponent implements AfterViewInit {
           },
           y: {
             beginAtZero: true,
-            max: maxValue,
+
             grid: { color: '#e5e7eb' },
           },
         },
@@ -112,6 +113,7 @@ export class BarGraphWithLineChartComponent implements AfterViewInit {
     if (!RAW_BAR_DATA || RAW_BAR_DATA.length === 0) {
       throw new Error('RAW_BAR_DATA is empty or undefined.');
     }
+    // TODO here maxValue should be max value of y axis which is auomatically calculated
     const maxValue = Math.max(...RAW_BAR_DATA.map((item: any) => item.votes));
     console.log('Max Value:', maxValue);
 
@@ -122,5 +124,23 @@ export class BarGraphWithLineChartComponent implements AfterViewInit {
     this.barChartData = RAW_BAR_DATA.map((_, index) =>
       index % 2 === 0 ? 0 : maxValue
     );
+  }
+
+  private updateBarDataWithYAxisMax(): void {
+    if (this.chart) {
+      const yAxisMax = this.chart.scales['y'].max || 0;
+
+      // Replace all votes with the max value
+      this.barChartData = RAW_BAR_DATA.map(() => yAxisMax);
+
+      // Alternate between 0 and maxValue
+      this.barChartData = RAW_BAR_DATA.map((_, index) =>
+        index % 2 === 0 ? 0 : yAxisMax
+      );
+
+      // Update the chart dataset
+      (this.chart.data.datasets[0].data as number[]) = this.barChartData;
+      this.chart.update();
+    }
   }
 }

@@ -27,7 +27,7 @@ export class BarChartComponent implements OnInit {
     const labels = RAW_BAR_DATA.map((item: any) => item.color);
     const dataValues = RAW_BAR_DATA.map((item: any) => item.votes);
 
-    const barWidth = 60; // fixed bar width
+    const barWidth = 90; // fixed bar width
     const totalChartWidth = labels.length * (barWidth + 10); // bar + spacing
 
     const containerWidth =
