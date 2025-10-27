@@ -9,13 +9,13 @@ import { Chart, registerables } from 'chart.js';
 import { SALE_DATA } from './data';
 
 @Component({
-  selector: 'app-line-chart-with-bar-chart',
+  selector: 'app-bar-graph-sticky-yaxis',
   standalone: true,
   imports: [],
-  templateUrl: './line-chart-with-bar-chart.component.html',
-  styleUrl: './line-chart-with-bar-chart.component.scss',
+  templateUrl: './bar-graph-sticky-yaxis.component.html',
+  styleUrl: './bar-graph-sticky-yaxis.component.scss',
 })
-export class LineChartWithBarChartComponent implements OnInit, AfterViewInit {
+export class BarGraphStickyYAxisComponent {
   myChart!: Chart;
   chartData: any;
 
@@ -162,8 +162,8 @@ export class LineChartWithBarChartComponent implements OnInit, AfterViewInit {
   }
 
   private extractChartData() {
-    const labels = SALE_DATA.map((item) => item.day);
-    const values = SALE_DATA.map((item) => item.sales);
+    const labels = SALE_DATA.map((item: any) => item.day);
+    const values = SALE_DATA.map((item: any) => item.sales);
     return { labels, values };
   }
 

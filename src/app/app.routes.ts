@@ -17,7 +17,21 @@ export const routes: Routes = [
     path: 'line-chart',
     loadComponent: () =>
       import(
-        './components/line-chart-with-bar-chart/line-chart-with-bar-chart.component'
-      ).then((m) => m.LineChartWithBarChartComponent),
+        './components/bar-graph-sticky-yaxis/bar-graph-sticky-yaxis.component'
+      ).then((m) => m.BarGraphStickyYAxisComponent),
+  },
+  {
+    path: 'horizontal-bar-chart',
+    loadComponent: () =>
+      import(
+        './components/horixontal-bar-graph/horixontal-bar-graph.component'
+      ).then((m) => m.HorixontalBarGraphComponent),
+  },
+  {
+    path: 'bar-chart-with-line-chart',
+    loadComponent: () =>
+      import(
+        './components/bar-graph-with-line-chart/bar-graph-with-line-chart.component'
+      ).then((m) => m.BarGraphWithLineChartComponent),
   },
 ];

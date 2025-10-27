@@ -1,0 +1,36 @@
+canvas {
+  background-color: rgba(245, 245, 245, 0.8);
+  border-radius: 8px;
+  padding: 20px;
+  display: block;
+}
+
+.chart-container {
+  width: 100%;
+  overflow-x: auto; /* enables horizontal scroll */
+  overflow-y: hidden;
+  border: 1px solid #e5e7eb;
+  scrollbar-gutter: stable !important;
+  scrollbar-gutter: stable;
+
+  /* ✅ Always show scrollbar for Chrome, Edge, Safari */
+  &::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
+
+  scrollbar-color: #cbd5e1 #f1f1f1;
+  scrollbar-width: thin;
+}
